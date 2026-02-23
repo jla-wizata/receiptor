@@ -1,0 +1,3 @@
+// Release configuration
+_SLASH = /
+API_BASE_URL = https:$(_SLASH)$(_SLASH)api.receiptor.app

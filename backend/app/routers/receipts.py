@@ -21,7 +21,7 @@ def upload_receipt(
     return receipts_service.upload_receipt(supabase, str(current_user.id), file)
 
 
-@router.get("/")
+@router.get("")
 def list_receipts(
     start_date: Optional[date] = None,
     end_date: Optional[date] = None,

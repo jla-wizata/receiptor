@@ -167,6 +167,31 @@ def create_holiday(
     return result.data[0]
 
 
+@router.put("/holidays/{holiday_id}", response_model=UserHolidayOut)
+def update_holiday(
+    holiday_id: str,
+    body: UserHolidayIn,
+    current_user=Depends(get_current_user),
+    supabase: Client = Depends(get_supabase_admin),
+):
+    row = {
+        "start_date": body.start_date.isoformat(),
+        "end_date": body.end_date.isoformat(),
+        "description": body.description,
+    }
+    from fastapi import HTTPException
+    result = (
+        supabase.table("user_holidays")
+        .update(row)
+        .eq("id", holiday_id)
+        .eq("user_id", str(current_user.id))
+        .execute()
+    )
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Holiday not found")
+    return result.data[0]
+
+
 @router.delete("/holidays/{holiday_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_holiday(
     holiday_id: str,

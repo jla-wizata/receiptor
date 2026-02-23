@@ -73,6 +73,7 @@ def compute_summary(
     projected = round(rate * len(future_working_days))
     forecast = homeworking_so_far + projected
 
+    at_risk = forecast > threshold
     return {
         "year": year,
         "working_country_code": working_country_code,
@@ -82,6 +83,8 @@ def compute_summary(
         "days_with_proof": len(proved_days),
         "days_without_proof": homeworking_so_far,
         "forecast_homeworking_days": forecast,
+        "forecasted_days_without_proof": forecast,
         "remaining_allowed_homeworking_days": max(0, threshold - homeworking_so_far),
-        "is_at_risk": forecast > threshold,
+        "is_at_risk": at_risk,
+        "compliance_status": "at_risk" if at_risk else "compliant",
     }

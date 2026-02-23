@@ -3,14 +3,14 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from supabase_auth.errors import AuthApiError
 from supabase import Client
 
-from app.db.supabase import get_supabase
+from app.db.supabase import get_supabase_admin
 
 bearer_scheme = HTTPBearer()
 
 
 def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
-    supabase: Client = Depends(get_supabase),
+    supabase: Client = Depends(get_supabase_admin),
 ):
     """Verify the Bearer JWT and return the authenticated Supabase user."""
     try:

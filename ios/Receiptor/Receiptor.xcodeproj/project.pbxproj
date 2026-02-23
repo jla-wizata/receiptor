@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001000000000000001B /* ReceiptorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000001A /* ReceiptorApp.swift */; };
+		AA000002000000000000001B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002000000000000001A /* AppState.swift */; };
+		AA000003000000000000001B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000003000000000000001A /* KeychainManager.swift */; };
+		AA000004000000000000001B /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000004000000000000001A /* APIClient.swift */; };
+		AA000005000000000000001B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000005000000000000001A /* AuthService.swift */; };
+		AA000006000000000000001B /* ReceiptsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000006000000000000001A /* ReceiptsService.swift */; };
+		AA000007000000000000001B /* DashboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000007000000000000001A /* DashboardService.swift */; };
+		AA000008000000000000001B /* HolidaysService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000008000000000000001A /* HolidaysService.swift */; };
+		AA000009000000000000001B /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000009000000000000001A /* ReportService.swift */; };
+		AA00000A000000000000001B /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000A000000000000001A /* AuthModels.swift */; };
+		AA00000B000000000000001B /* ReceiptModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000B000000000000001A /* ReceiptModels.swift */; };
+		AA00000C000000000000001B /* DashboardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000C000000000000001A /* DashboardModels.swift */; };
+		AA00000D000000000000001B /* HolidayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000D000000000000001A /* HolidayModels.swift */; };
+		AA00000E000000000000001B /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000E000000000000001A /* AuthContainerView.swift */; };
+		AA00000F000000000000001B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000F000000000000001A /* LoginView.swift */; };
+		AA000010000000000000001B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000010000000000000001A /* RegisterView.swift */; };
+		AA000011000000000000001B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000011000000000000001A /* MainTabView.swift */; };
+		AA000012000000000000001B /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000012000000000000001A /* DashboardView.swift */; };
+		AA000013000000000000001B /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000013000000000000001A /* DashboardViewModel.swift */; };
+		AA000014000000000000001B /* ReceiptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000014000000000000001A /* ReceiptListView.swift */; };
+		AA000015000000000000001B /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000015000000000000001A /* ReceiptListViewModel.swift */; };
+		AA000016000000000000001B /* ReceiptCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000016000000000000001A /* ReceiptCaptureView.swift */; };
+		AA000017000000000000001B /* ReceiptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000017000000000000001A /* ReceiptDetailView.swift */; };
+		AA000018000000000000001B /* DateCorrectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000018000000000000001A /* DateCorrectionSheet.swift */; };
+		AA000019000000000000001B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000019000000000000001A /* SettingsView.swift */; };
+		AA00001A000000000000001B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001A000000000000001A /* SettingsViewModel.swift */; };
+		AA00001B000000000000001B /* HolidaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001B000000000000001A /* HolidaysView.swift */; };
+		AA00001C000000000000001B /* HolidaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001C000000000000001A /* HolidaysViewModel.swift */; };
+		AA00001D000000000000001B /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001D000000000000001A /* ReportView.swift */; };
+		AA00001E000000000000001B /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001E000000000000001A /* ReportViewModel.swift */; };
+		AA00001F000000000000001B /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00001F000000000000001A /* ErrorBanner.swift */; };
+		AA000020000000000000001B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000020000000000000001A /* LoadingView.swift */; };
+		AA000021000000000000001B /* ComplianceStatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000021000000000000001A /* ComplianceStatusBadge.swift */; };
+		AA000022000000000000001B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000022000000000000001A /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA000001000000000000001A /* ReceiptorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptorApp.swift; sourceTree = "<group>"; };
+		AA000002000000000000001A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		AA000003000000000000001A /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		AA000004000000000000001A /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		AA000005000000000000001A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		AA000006000000000000001A /* ReceiptsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptsService.swift; sourceTree = "<group>"; };
+		AA000007000000000000001A /* DashboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardService.swift; sourceTree = "<group>"; };
+		AA000008000000000000001A /* HolidaysService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysService.swift; sourceTree = "<group>"; };
+		AA000009000000000000001A /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		AA00000A000000000000001A /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
+		AA00000B000000000000001A /* ReceiptModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptModels.swift; sourceTree = "<group>"; };
+		AA00000C000000000000001A /* DashboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardModels.swift; sourceTree = "<group>"; };
+		AA00000D000000000000001A /* HolidayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayModels.swift; sourceTree = "<group>"; };
+		AA00000E000000000000001A /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
+		AA00000F000000000000001A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AA000010000000000000001A /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		AA000011000000000000001A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		AA000012000000000000001A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		AA000013000000000000001A /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		AA000014000000000000001A /* ReceiptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListView.swift; sourceTree = "<group>"; };
+		AA000015000000000000001A /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
+		AA000016000000000000001A /* ReceiptCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCaptureView.swift; sourceTree = "<group>"; };
+		AA000017000000000000001A /* ReceiptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptDetailView.swift; sourceTree = "<group>"; };
+		AA000018000000000000001A /* DateCorrectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCorrectionSheet.swift; sourceTree = "<group>"; };
+		AA000019000000000000001A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA00001A000000000000001A /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		AA00001B000000000000001A /* HolidaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysView.swift; sourceTree = "<group>"; };
+		AA00001C000000000000001A /* HolidaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidaysViewModel.swift; sourceTree = "<group>"; };
+		AA00001D000000000000001A /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		AA00001E000000000000001A /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		AA00001F000000000000001A /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
+		AA000020000000000000001A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		AA000021000000000000001A /* ComplianceStatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplianceStatusBadge.swift; sourceTree = "<group>"; };
+		AA000022000000000000001A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA000023000000000000001A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA000024000000000000001A /* Receiptor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Receiptor.entitlements; sourceTree = "<group>"; };
+		AA000025000000000000001A /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		AA000026000000000000001A /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		AA000027000000000000001A /* Receiptor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Receiptor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA000030000000000000001A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA000040000000000000001A /* Receiptor */ = {
+			isa = PBXGroup;
+			children = (
+				AA000001000000000000001A /* ReceiptorApp.swift */,
+				AA000002000000000000001A /* AppState.swift */,
+				AA000041000000000000001A /* Keychain */,
+				AA000042000000000000001A /* Network */,
+				AA000043000000000000001A /* Models */,
+				AA000044000000000000001A /* Views */,
+				AA000022000000000000001A /* Assets.xcassets */,
+				AA000023000000000000001A /* Info.plist */,
+				AA000024000000000000001A /* Receiptor.entitlements */,
+				AA000048000000000000001A /* Config */,
+			);
+			sourceTree = "<group>";
+		};
+		AA000041000000000000001A /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				AA000003000000000000001A /* KeychainManager.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		AA000042000000000000001A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AA000004000000000000001A /* APIClient.swift */,
+				AA000005000000000000001A /* AuthService.swift */,
+				AA000006000000000000001A /* ReceiptsService.swift */,
+				AA000007000000000000001A /* DashboardService.swift */,
+				AA000008000000000000001A /* HolidaysService.swift */,
+				AA000009000000000000001A /* ReportService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AA000043000000000000001A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000A000000000000001A /* AuthModels.swift */,
+				AA00000B000000000000001A /* ReceiptModels.swift */,
+				AA00000C000000000000001A /* DashboardModels.swift */,
+				AA00000D000000000000001A /* HolidayModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA000044000000000000001A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA000049000000000000001A /* Auth */,
+				AA00004A000000000000001A /* Main */,
+				AA00004B000000000000001A /* Dashboard */,
+				AA00004C000000000000001A /* Receipts */,
+				AA00004D000000000000001A /* Settings */,
+				AA00004E000000000000001A /* Holidays */,
+				AA00004F000000000000001A /* Report */,
+				AA000050000000000000001A /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA000048000000000000001A /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AA000025000000000000001A /* Debug.xcconfig */,
+				AA000026000000000000001A /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		AA000049000000000000001A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AA00000E000000000000001A /* AuthContainerView.swift */,
+				AA00000F000000000000001A /* LoginView.swift */,
+				AA000010000000000000001A /* RegisterView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		AA00004A000000000000001A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AA000011000000000000001A /* MainTabView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		AA00004B000000000000001A /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				AA000012000000000000001A /* DashboardView.swift */,
+				AA000013000000000000001A /* DashboardViewModel.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		AA00004C000000000000001A /* Receipts */ = {
+			isa = PBXGroup;
+			children = (
+				AA000014000000000000001A /* ReceiptListView.swift */,
+				AA000015000000000000001A /* ReceiptListViewModel.swift */,
+				AA000016000000000000001A /* ReceiptCaptureView.swift */,
+				AA000017000000000000001A /* ReceiptDetailView.swift */,
+				AA000018000000000000001A /* DateCorrectionSheet.swift */,
+			);
+			path = Receipts;
+			sourceTree = "<group>";
+		};
+		AA00004D000000000000001A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA000019000000000000001A /* SettingsView.swift */,
+				AA00001A000000000000001A /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		AA00004E000000000000001A /* Holidays */ = {
+			isa = PBXGroup;
+			children = (
+				AA00001B000000000000001A /* HolidaysView.swift */,
+				AA00001C000000000000001A /* HolidaysViewModel.swift */,
+			);
+			path = Holidays;
+			sourceTree = "<group>";
+		};
+		AA00004F000000000000001A /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				AA00001D000000000000001A /* ReportView.swift */,
+				AA00001E000000000000001A /* ReportViewModel.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		AA000050000000000000001A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA00001F000000000000001A /* ErrorBanner.swift */,
+				AA000020000000000000001A /* LoadingView.swift */,
+				AA000021000000000000001A /* ComplianceStatusBadge.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		AA000060000000000000001A = {
+			isa = PBXGroup;
+			children = (
+				AA000040000000000000001A /* Receiptor */,
+				AA000061000000000000001A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA000061000000000000001A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA000027000000000000001A /* Receiptor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA000070000000000000001A /* Receiptor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA000080000000000000001A /* Build configuration list for PBXNativeTarget "Receiptor" */;
+			buildPhases = (
+				AA000031000000000000001A /* Sources */,
+				AA000030000000000000001A /* Frameworks */,
+				AA000032000000000000001A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Receiptor;
+			productName = Receiptor;
+			productReference = AA000027000000000000001A /* Receiptor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA000090000000000000001A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA000070000000000000001A = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA000081000000000000001A /* Build configuration list for PBXProject "Receiptor" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA000060000000000000001A;
+			productRefGroup = AA000061000000000000001A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA000070000000000000001A /* Receiptor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA000032000000000000001A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000022000000000000001B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA000031000000000000001A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001000000000000001B /* ReceiptorApp.swift in Sources */,
+				AA000002000000000000001B /* AppState.swift in Sources */,
+				AA000003000000000000001B /* KeychainManager.swift in Sources */,
+				AA000004000000000000001B /* APIClient.swift in Sources */,
+				AA000005000000000000001B /* AuthService.swift in Sources */,
+				AA000006000000000000001B /* ReceiptsService.swift in Sources */,
+				AA000007000000000000001B /* DashboardService.swift in Sources */,
+				AA000008000000000000001B /* HolidaysService.swift in Sources */,
+				AA000009000000000000001B /* ReportService.swift in Sources */,
+				AA00000A000000000000001B /* AuthModels.swift in Sources */,
+				AA00000B000000000000001B /* ReceiptModels.swift in Sources */,
+				AA00000C000000000000001B /* DashboardModels.swift in Sources */,
+				AA00000D000000000000001B /* HolidayModels.swift in Sources */,
+				AA00000E000000000000001B /* AuthContainerView.swift in Sources */,
+				AA00000F000000000000001B /* LoginView.swift in Sources */,
+				AA000010000000000000001B /* RegisterView.swift in Sources */,
+				AA000011000000000000001B /* MainTabView.swift in Sources */,
+				AA000012000000000000001B /* DashboardView.swift in Sources */,
+				AA000013000000000000001B /* DashboardViewModel.swift in Sources */,
+				AA000014000000000000001B /* ReceiptListView.swift in Sources */,
+				AA000015000000000000001B /* ReceiptListViewModel.swift in Sources */,
+				AA000016000000000000001B /* ReceiptCaptureView.swift in Sources */,
+				AA000017000000000000001B /* ReceiptDetailView.swift in Sources */,
+				AA000018000000000000001B /* DateCorrectionSheet.swift in Sources */,
+				AA000019000000000000001B /* SettingsView.swift in Sources */,
+				AA00001A000000000000001B /* SettingsViewModel.swift in Sources */,
+				AA00001B000000000000001B /* HolidaysView.swift in Sources */,
+				AA00001C000000000000001B /* HolidaysViewModel.swift in Sources */,
+				AA00001D000000000000001B /* ReportView.swift in Sources */,
+				AA00001E000000000000001B /* ReportViewModel.swift in Sources */,
+				AA00001F000000000000001B /* ErrorBanner.swift in Sources */,
+				AA000020000000000000001B /* LoadingView.swift in Sources */,
+				AA000021000000000000001B /* ComplianceStatusBadge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000A0000000000000001A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA000025000000000000001A /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Receiptor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.receiptor.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA0000A1000000000000001A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA000026000000000000001A /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Receiptor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.receiptor.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA0000A2000000000000001A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA0000A3000000000000001A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA000080000000000000001A /* Build configuration list for PBXNativeTarget "Receiptor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000A0000000000000001A /* Debug */,
+				AA0000A1000000000000001A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA000081000000000000001A /* Build configuration list for PBXProject "Receiptor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000A2000000000000001A /* Debug */,
+				AA0000A3000000000000001A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = AA000090000000000000001A /* Project object */;
+}

@@ -57,7 +57,9 @@ class DashboardSummary(BaseModel):
     total_working_days: int
     past_working_days: int
     days_with_proof: int
-    days_without_proof: int           # home-working days so far
-    forecast_homeworking_days: int    # projected total at year end
+    days_without_proof: int
+    forecast_homeworking_days: int
+    forecasted_days_without_proof: int   # alias for iOS compatibility
     remaining_allowed_homeworking_days: int
-    is_at_risk: bool                  # forecast exceeds threshold
+    is_at_risk: bool
+    compliance_status: str               # "compliant" | "at_risk" for iOS
