@@ -48,13 +48,12 @@ struct ReceiptListView: View {
             .navigationDestination(item: $selectedReceipt) { receipt in
                 ReceiptDetailView(receipt: receipt)
             }
-            .confirmationDialog(
+            .alert(
                 "Delete Receipt",
                 isPresented: Binding(
                     get: { receiptToDelete != nil },
                     set: { if !$0 { receiptToDelete = nil } }
-                ),
-                titleVisibility: .visible
+                )
             ) {
                 Button("Delete", role: .destructive) {
                     if let r = receiptToDelete {
