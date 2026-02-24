@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ReceiptDetailView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var receipt: Receipt
     @State private var showDateCorrection = false
 
@@ -80,17 +81,15 @@ struct ReceiptDetailView: View {
                 .cornerRadius(12)
                 .padding(.horizontal)
 
-                if receipt.ocrStatus != "success" {
-                    Button {
-                        showDateCorrection = true
-                    } label: {
-                        Label("Correct Date", systemImage: "calendar.badge.plus")
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 4)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.horizontal)
+                Button {
+                    showDateCorrection = true
+                } label: {
+                    Label("Correct Date", systemImage: "calendar.badge.plus")
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 4)
                 }
+                .buttonStyle(.borderedProminent)
+                .padding(.horizontal)
             }
             .padding(.vertical)
         }
@@ -99,6 +98,7 @@ struct ReceiptDetailView: View {
         .sheet(isPresented: $showDateCorrection) {
             DateCorrectionSheet(receipt: receipt, viewModel: nil) { updated in
                 receipt = updated
+                dismiss()
             }
         }
     }

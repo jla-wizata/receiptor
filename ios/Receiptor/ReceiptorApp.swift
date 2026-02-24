@@ -21,10 +21,12 @@ struct ContentRootView: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        if appState.isAuthenticated {
-            MainTabView()
-        } else {
-            AuthContainerView()
-        }
+        MainTabView()
+            .fullScreenCover(isPresented: Binding(
+                get: { !appState.isAuthenticated },
+                set: { _ in }
+            )) {
+                AuthContainerView()
+            }
     }
 }

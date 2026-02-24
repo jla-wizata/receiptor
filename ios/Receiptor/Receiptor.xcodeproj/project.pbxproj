@@ -41,6 +41,8 @@
 		AA000020000000000000001B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000020000000000000001A /* LoadingView.swift */; };
 		AA000021000000000000001B /* ComplianceStatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000021000000000000001A /* ComplianceStatusBadge.swift */; };
 		AA000022000000000000001B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000022000000000000001A /* Assets.xcassets */; };
+		AA0000B1000000000000001B /* CaptureTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000B0000000000000001A /* CaptureTabView.swift */; };
+		AA0000C1000000000000001B /* DatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000C0000000000000001A /* DatePickerSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,8 @@
 		AA000025000000000000001A /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		AA000026000000000000001A /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		AA000027000000000000001A /* Receiptor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Receiptor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000B0000000000000001A /* CaptureTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureTabView.swift; sourceTree = "<group>"; };
+		AA0000C0000000000000001A /* DatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 			children = (
 				AA000049000000000000001A /* Auth */,
 				AA00004A000000000000001A /* Main */,
+				AA000051000000000000001A /* Capture */,
 				AA00004B000000000000001A /* Dashboard */,
 				AA00004C000000000000001A /* Receipts */,
 				AA00004D000000000000001A /* Settings */,
@@ -234,12 +239,21 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
+		AA000051000000000000001A /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000B0000000000000001A /* CaptureTabView.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
 		AA000050000000000000001A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				AA00001F000000000000001A /* ErrorBanner.swift */,
 				AA000020000000000000001A /* LoadingView.swift */,
 				AA000021000000000000001A /* ComplianceStatusBadge.swift */,
+				AA0000C0000000000000001A /* DatePickerSheet.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -346,6 +360,7 @@
 				AA00000F000000000000001B /* LoginView.swift in Sources */,
 				AA000010000000000000001B /* RegisterView.swift in Sources */,
 				AA000011000000000000001B /* MainTabView.swift in Sources */,
+				AA0000B1000000000000001B /* CaptureTabView.swift in Sources */,
 				AA000012000000000000001B /* DashboardView.swift in Sources */,
 				AA000013000000000000001B /* DashboardViewModel.swift in Sources */,
 				AA000014000000000000001B /* ReceiptListView.swift in Sources */,
@@ -362,6 +377,7 @@
 				AA00001F000000000000001B /* ErrorBanner.swift in Sources */,
 				AA000020000000000000001B /* LoadingView.swift in Sources */,
 				AA000021000000000000001B /* ComplianceStatusBadge.swift in Sources */,
+				AA0000C1000000000000001B /* DatePickerSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,6 +4,7 @@ struct ReceiptListView: View {
     @State private var viewModel = ReceiptListViewModel()
     @State private var showCapture = false
     @State private var showFilter = false
+    @State private var selectedReceipt: Receipt? = nil
 
     var body: some View {
         NavigationStack {
@@ -42,6 +43,9 @@ struct ReceiptListView: View {
             }
             .sheet(isPresented: $showFilter) {
                 ReceiptFilterSheet(viewModel: viewModel)
+            }
+            .navigationDestination(item: $selectedReceipt) { receipt in
+                ReceiptDetailView(receipt: receipt)
             }
             .task { await viewModel.load() }
             .refreshable { await viewModel.load() }
@@ -88,7 +92,7 @@ struct ReceiptListView: View {
                         HStack {
                             ReceiptRow(receipt: receipt)
                             Spacer()
-                            NavigationLink(destination: ReceiptDetailView(receipt: receipt)) {
+                            Button { selectedReceipt = receipt } label: {
                                 Image(systemName: "pencil")
                                     .foregroundColor(.blue)
                             }
@@ -114,16 +118,19 @@ struct ReceiptFilterSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Bindable var viewModel: ReceiptListViewModel
 
-    // Local copies so changes only apply on "Apply"
     @State private var start: Date
     @State private var end: Date
-    @State private var isAllTime: Bool
+    @State private var showFromPicker = false
+    @State private var showToPicker = false
+
+    private let dateFmt: DateFormatter = {
+        let f = DateFormatter(); f.dateStyle = .medium; return f
+    }()
 
     init(viewModel: ReceiptListViewModel) {
         self.viewModel = viewModel
         _start = State(initialValue: viewModel.filterStart ?? ReceiptListViewModel.currentYearStart())
         _end = State(initialValue: viewModel.filterEnd ?? Date())
-        _isAllTime = State(initialValue: viewModel.filterStart == nil)
     }
 
     var body: some View {
@@ -133,21 +140,32 @@ struct ReceiptFilterSheet: View {
                     Button("This Year") { applyPreset(thisYear: true) }
                     Button("Last 3 Months") { applyPreset(months: 3) }
                     Button("Last 6 Months") { applyPreset(months: 6) }
-                    Button("All Time") { isAllTime = true }
+                    Button("All Time") { applyAllTime() }
                 }
                 .foregroundColor(.primary)
 
-                if !isAllTime {
-                    Section("Custom Range") {
-                        DatePicker("From", selection: $start, in: ...end, displayedComponents: .date)
-                            .onChange(of: start) { isAllTime = false }
-                        DatePicker("To", selection: $end, in: start..., displayedComponents: .date)
-                            .onChange(of: end) { isAllTime = false }
+                Section("Custom Range") {
+                    Button {
+                        showFromPicker = true
+                    } label: {
+                        HStack {
+                            Text("From").foregroundColor(.primary)
+                            Spacer()
+                            Text(dateFmt.string(from: start)).foregroundColor(.secondary)
+                        }
                     }
-                } else {
-                    Section {
-                        Text("Showing all receipts").foregroundColor(.secondary)
+                    Button {
+                        showToPicker = true
+                    } label: {
+                        HStack {
+                            Text("To").foregroundColor(.primary)
+                            Spacer()
+                            Text(dateFmt.string(from: end)).foregroundColor(.secondary)
+                        }
                     }
+                    Button("Apply Custom Range") { apply() }
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
                 }
             }
             .navigationTitle("Filter")
@@ -156,32 +174,43 @@ struct ReceiptFilterSheet: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") { dismiss() }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Apply") { apply() }
-                        .fontWeight(.semibold)
-                }
+            }
+            .sheet(isPresented: $showFromPicker) {
+                DatePickerSheet(title: "From", date: $start, max: end)
+            }
+            .sheet(isPresented: $showToPicker) {
+                DatePickerSheet(title: "To", date: $end, min: start)
             }
         }
     }
 
     private func applyPreset(thisYear: Bool = false, months: Int? = nil) {
-        isAllTime = false
         if thisYear {
-            start = ReceiptListViewModel.currentYearStart()
-            end = ReceiptListViewModel.currentYearEnd()
+            viewModel.filterStart = ReceiptListViewModel.currentYearStart()
+            viewModel.filterEnd = ReceiptListViewModel.currentYearEnd()
         } else if let m = months {
-            end = Date()
-            start = Calendar.current.date(byAdding: .month, value: -m, to: Date())!
+            viewModel.filterEnd = Date()
+            viewModel.filterStart = Calendar.current.date(byAdding: .month, value: -m, to: Date())!
         }
+        Task { await viewModel.load() }
+        dismiss()
+    }
+
+    private func applyAllTime() {
+        viewModel.filterStart = nil
+        viewModel.filterEnd = nil
+        Task { await viewModel.load() }
+        dismiss()
     }
 
     private func apply() {
-        viewModel.filterStart = isAllTime ? nil : start
-        viewModel.filterEnd = isAllTime ? nil : end
+        viewModel.filterStart = start
+        viewModel.filterEnd = end
         Task { await viewModel.load() }
         dismiss()
     }
 }
+
 
 // MARK: - Receipt Row
 
@@ -208,9 +237,9 @@ struct ReceiptRow: View {
 
     private var ocrStatusLabel: String {
         switch receipt.ocrStatus {
-        case "success": return "OCR"
-        case "manual": return "Manual"
-        case "no_date_found": return "No date"
+        case "success": return "Date auto-detected"
+        case "manual": return "Date filled"
+        case "no_date_found": return "No date filled"
         default: return "Failed"
         }
     }

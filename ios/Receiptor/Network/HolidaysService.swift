@@ -7,12 +7,9 @@ struct HolidaysService {
         self.client = client
     }
 
-    func getPublicHolidays(year: Int, country: String) async throws -> [PublicHoliday] {
-        let queryItems = [
-            URLQueryItem(name: "year", value: "\(year)"),
-            URLQueryItem(name: "country_code", value: country)
-        ]
-        return try await client.request(Endpoint(path: "/holidays/public", queryItems: queryItems))
+    func getPublicHolidays(year: Int) async throws -> [PublicHoliday] {
+        let queryItems = [URLQueryItem(name: "year", value: "\(year)")]
+        return try await client.request(Endpoint(path: "/holidays", queryItems: queryItems))
     }
 
     func getCountries() async throws -> [Country] {

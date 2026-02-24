@@ -45,7 +45,17 @@ final class ReceiptListViewModel {
                 startDate: filterStart.map { dateFmt.string(from: $0) },
                 endDate: filterEnd.map { dateFmt.string(from: $0) }
             )
-            receipts = result.receipts
+            var combined = result.receipts
+
+            // When a date filter is active, also include undated receipts
+            if filterStart != nil || filterEnd != nil {
+                let all = try await service.list(startDate: nil, endDate: nil)
+                let existingIds = Set(combined.map { $0.id })
+                let undated = all.receipts.filter { $0.receiptDate == nil && !existingIds.contains($0.id) }
+                combined += undated
+            }
+
+            receipts = combined
         } catch {
             errorMessage = error.localizedDescription
         }

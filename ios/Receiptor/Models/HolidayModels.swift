@@ -42,10 +42,10 @@ struct CreateSchedulePeriodRequest: Encodable {
 }
 
 struct PublicHoliday: Codable, Identifiable {
-    let id: String
+    var id: String { date }
     let date: String
-    let localName: String
     let name: String
+    let localName: String
 }
 
 struct Country: Codable, Identifiable {

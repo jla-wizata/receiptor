@@ -1,6 +1,6 @@
 import Foundation
 
-struct Receipt: Codable, Identifiable {
+struct Receipt: Codable, Identifiable, Hashable {
     let id: String
     let userId: String
     let receiptDate: String?

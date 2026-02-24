@@ -6,6 +6,7 @@ struct HolidaysView: View {
     @State private var showAddSchedule = false
     @State private var holidayToEdit: UserHoliday? = nil
     @State private var periodToEdit: WorkSchedulePeriod? = nil
+    @State private var showPublicHolidays = false
 
     var body: some View {
         NavigationStack {
@@ -18,6 +19,9 @@ struct HolidaysView: View {
             }
             .navigationTitle("Holidays & Schedule")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    yearPicker
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Button("Add Personal Holiday") { showAddHoliday = true }
@@ -28,6 +32,7 @@ struct HolidaysView: View {
                 }
             }
             .task { await viewModel.load() }
+            .onChange(of: viewModel.year) { Task { await viewModel.load() } }
             .refreshable { await viewModel.load() }
             .sheet(isPresented: $showAddHoliday) {
                 AddHolidaySheet(viewModel: viewModel)
@@ -47,6 +52,20 @@ struct HolidaysView: View {
                 Text(viewModel.errorMessage ?? "")
             })
         }
+    }
+
+    private var yearPicker: some View {
+        HStack(spacing: 4) {
+            Button { viewModel.year -= 1 } label: {
+                Image(systemName: "chevron.left").imageScale(.small)
+            }
+            Text(String(viewModel.year))
+                .font(.headline).monospacedDigit().frame(minWidth: 48)
+            Button { viewModel.year += 1 } label: {
+                Image(systemName: "chevron.right").imageScale(.small)
+            }
+        }
+        .buttonStyle(.borderless)
     }
 
     private var holidaysList: some View {
@@ -104,6 +123,27 @@ struct HolidaysView: View {
                     }
                 }
             }
+
+            Section {
+                DisclosureGroup(
+                    isExpanded: $showPublicHolidays,
+                    content: {
+                        if viewModel.publicHolidays.isEmpty {
+                            Text("No public holidays found")
+                                .foregroundColor(.secondary)
+                                .font(.subheadline)
+                        } else {
+                            ForEach(viewModel.publicHolidays) { holiday in
+                                PublicHolidayRow(holiday: holiday)
+                            }
+                        }
+                    },
+                    label: {
+                        Text("Public Holidays (\(String(viewModel.year)))")
+                            .font(.headline)
+                    }
+                )
+            }
         }
     }
 }
@@ -152,6 +192,36 @@ struct SchedulePeriodRow: View {
     }
 }
 
+// MARK: - Public Holiday Row
+
+struct PublicHolidayRow: View {
+    let holiday: PublicHoliday
+
+    private var displayDate: String {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyy-MM-dd"
+        guard let date = fmt.date(from: holiday.date) else { return holiday.date }
+        let out = DateFormatter()
+        out.dateFormat = "EEE, MMM d"
+        return out.string(from: date)
+    }
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(holiday.name).font(.body)
+                Text(holiday.localName)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            Spacer()
+            Text(displayDate)
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+    }
+}
+
 // MARK: - Edit Holiday Sheet
 
 struct EditHolidaySheet: View {
@@ -163,9 +233,14 @@ struct EditHolidaySheet: View {
     @State private var endDate: Date
     @State private var description: String
     @State private var isSaving = false
+    @State private var showStartPicker = false
+    @State private var showEndPicker = false
 
     private static let fmt: DateFormatter = {
         let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd"; return f
+    }()
+    private let displayFmt: DateFormatter = {
+        let f = DateFormatter(); f.dateStyle = .medium; return f
     }()
 
     init(viewModel: HolidaysViewModel, holiday: UserHoliday) {
@@ -180,8 +255,20 @@ struct EditHolidaySheet: View {
         NavigationStack {
             Form {
                 Section("Date Range") {
-                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-                    DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: .date)
+                    Button { showStartPicker = true } label: {
+                        HStack {
+                            Text("Start Date").foregroundColor(.primary)
+                            Spacer()
+                            Text(displayFmt.string(from: startDate)).foregroundColor(.secondary)
+                        }
+                    }
+                    Button { showEndPicker = true } label: {
+                        HStack {
+                            Text("End Date").foregroundColor(.primary)
+                            Spacer()
+                            Text(displayFmt.string(from: endDate)).foregroundColor(.secondary)
+                        }
+                    }
                 }
                 Section("Description (optional)") {
                     TextField("e.g. Summer vacation", text: $description)
@@ -194,6 +281,12 @@ struct EditHolidaySheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") { save() }.disabled(isSaving)
                 }
+            }
+            .sheet(isPresented: $showStartPicker) {
+                DatePickerSheet(title: "Start Date", date: $startDate)
+            }
+            .sheet(isPresented: $showEndPicker) {
+                DatePickerSheet(title: "End Date", date: $endDate, min: startDate)
             }
         }
     }
@@ -226,9 +319,14 @@ struct EditSchedulePeriodSheet: View {
     @State private var workingDays: Set<Int>
     @State private var description: String
     @State private var isSaving = false
+    @State private var showStartPicker = false
+    @State private var showEndPicker = false
 
     private static let fmt: DateFormatter = {
         let f = DateFormatter(); f.dateFormat = "yyyy-MM-dd"; return f
+    }()
+    private let displayFmt: DateFormatter = {
+        let f = DateFormatter(); f.dateStyle = .medium; return f
     }()
     private let dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
@@ -247,13 +345,22 @@ struct EditSchedulePeriodSheet: View {
         NavigationStack {
             Form {
                 Section("Date Range") {
-                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                    Button { showStartPicker = true } label: {
+                        HStack {
+                            Text("Start Date").foregroundColor(.primary)
+                            Spacer()
+                            Text(displayFmt.string(from: startDate)).foregroundColor(.secondary)
+                        }
+                    }
                     Toggle("Has end date", isOn: $hasEndDate)
                     if hasEndDate {
-                        DatePicker("End Date", selection: Binding(
-                            get: { endDate ?? startDate },
-                            set: { endDate = $0 }
-                        ), in: startDate..., displayedComponents: .date)
+                        Button { showEndPicker = true } label: {
+                            HStack {
+                                Text("End Date").foregroundColor(.primary)
+                                Spacer()
+                                Text(displayFmt.string(from: endDate ?? startDate)).foregroundColor(.secondary)
+                            }
+                        }
                     }
                 }
                 Section("Working Days") {
@@ -278,6 +385,15 @@ struct EditSchedulePeriodSheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Save") { save() }.disabled(isSaving || workingDays.isEmpty)
                 }
+            }
+            .sheet(isPresented: $showStartPicker) {
+                DatePickerSheet(title: "Start Date", date: $startDate)
+            }
+            .sheet(isPresented: $showEndPicker) {
+                DatePickerSheet(title: "End Date", date: Binding(
+                    get: { endDate ?? startDate },
+                    set: { endDate = $0 }
+                ), min: startDate)
             }
         }
     }
@@ -309,13 +425,31 @@ struct AddHolidaySheet: View {
     @State private var endDate = Date()
     @State private var description = ""
     @State private var isSaving = false
+    @State private var showStartPicker = false
+    @State private var showEndPicker = false
+
+    private let displayFmt: DateFormatter = {
+        let f = DateFormatter(); f.dateStyle = .medium; return f
+    }()
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Date Range") {
-                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-                    DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: .date)
+                    Button { showStartPicker = true } label: {
+                        HStack {
+                            Text("Start Date").foregroundColor(.primary)
+                            Spacer()
+                            Text(displayFmt.string(from: startDate)).foregroundColor(.secondary)
+                        }
+                    }
+                    Button { showEndPicker = true } label: {
+                        HStack {
+                            Text("End Date").foregroundColor(.primary)
+                            Spacer()
+                            Text(displayFmt.string(from: endDate)).foregroundColor(.secondary)
+                        }
+                    }
                 }
                 Section("Description (optional)") {
                     TextField("e.g. Summer vacation", text: $description)
@@ -331,6 +465,12 @@ struct AddHolidaySheet: View {
                     Button("Save") { save() }
                         .disabled(isSaving)
                 }
+            }
+            .sheet(isPresented: $showStartPicker) {
+                DatePickerSheet(title: "Start Date", date: $startDate)
+            }
+            .sheet(isPresented: $showEndPicker) {
+                DatePickerSheet(title: "End Date", date: $endDate, min: startDate)
             }
         }
     }
@@ -362,20 +502,34 @@ struct AddSchedulePeriodSheet: View {
     @State private var workingDays: Set<Int> = [0, 1, 2, 3, 4]
     @State private var description = ""
     @State private var isSaving = false
+    @State private var showStartPicker = false
+    @State private var showEndPicker = false
 
     private let dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    private let displayFmt: DateFormatter = {
+        let f = DateFormatter(); f.dateStyle = .medium; return f
+    }()
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Date Range") {
-                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                    Button { showStartPicker = true } label: {
+                        HStack {
+                            Text("Start Date").foregroundColor(.primary)
+                            Spacer()
+                            Text(displayFmt.string(from: startDate)).foregroundColor(.secondary)
+                        }
+                    }
                     Toggle("Has end date", isOn: $hasEndDate)
                     if hasEndDate {
-                        DatePicker("End Date", selection: Binding(
-                            get: { endDate ?? startDate },
-                            set: { endDate = $0 }
-                        ), in: startDate..., displayedComponents: .date)
+                        Button { showEndPicker = true } label: {
+                            HStack {
+                                Text("End Date").foregroundColor(.primary)
+                                Spacer()
+                                Text(displayFmt.string(from: endDate ?? startDate)).foregroundColor(.secondary)
+                            }
+                        }
                     }
                 }
                 Section("Working Days") {
@@ -403,6 +557,15 @@ struct AddSchedulePeriodSheet: View {
                     Button("Save") { save() }
                         .disabled(isSaving || workingDays.isEmpty)
                 }
+            }
+            .sheet(isPresented: $showStartPicker) {
+                DatePickerSheet(title: "Start Date", date: $startDate)
+            }
+            .sheet(isPresented: $showEndPicker) {
+                DatePickerSheet(title: "End Date", date: Binding(
+                    get: { endDate ?? startDate },
+                    set: { endDate = $0 }
+                ), min: startDate)
             }
         }
     }

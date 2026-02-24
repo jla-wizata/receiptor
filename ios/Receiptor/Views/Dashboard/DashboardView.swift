@@ -1,8 +1,14 @@
 import SwiftUI
+import UIKit
 
 struct DashboardView: View {
     @Environment(AppState.self) private var appState
     @State private var viewModel = DashboardViewModel()
+    @State private var isDownloadingReport = false
+    @State private var reportError: String? = nil
+    @State private var reportURL: URL? = nil
+    @State private var showReportShare = false
+    private let reportService = ReportService()
 
     var body: some View {
         NavigationStack {
@@ -37,6 +43,9 @@ struct DashboardView: View {
             }
             .task { await viewModel.load() }
             .onChange(of: viewModel.year) { Task { await viewModel.load() } }
+            .sheet(isPresented: $showReportShare, onDismiss: { reportURL = nil }) {
+                if let url = reportURL { ShareSheet(items: [url]) }
+            }
         }
     }
 
@@ -122,10 +131,65 @@ struct DashboardView: View {
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(12)
                 .padding(.horizontal)
+
+                reportSection
             }
             .padding(.bottom)
         }
         .refreshable { await viewModel.load() }
+    }
+
+    private var reportSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Label("Annual Report", systemImage: "doc.richtext")
+                .font(.headline)
+            if let error = reportError {
+                Text(error)
+                    .font(.caption)
+                    .foregroundColor(.red)
+            }
+            Button(action: downloadReport) {
+                Group {
+                    if isDownloadingReport {
+                        HStack(spacing: 8) { ProgressView(); Text("Generating PDF...") }
+                    } else {
+                        Label("Download PDF – \(String(viewModel.year))", systemImage: "arrow.down.doc.fill")
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 4)
+            }
+            .buttonStyle(.bordered)
+            .disabled(isDownloadingReport)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
+        .padding(.horizontal)
+    }
+
+    private func downloadReport() {
+        isDownloadingReport = true
+        reportError = nil
+        Task {
+            do {
+                let data = try await reportService.downloadReport(year: viewModel.year)
+                let url = FileManager.default.temporaryDirectory
+                    .appendingPathComponent("receiptor-\(String(viewModel.year)).pdf")
+                try data.write(to: url)
+                await MainActor.run {
+                    reportURL = url
+                    showReportShare = true
+                    isDownloadingReport = false
+                }
+            } catch {
+                await MainActor.run {
+                    reportError = error.localizedDescription
+                    isDownloadingReport = false
+                }
+            }
+        }
     }
 }
 
