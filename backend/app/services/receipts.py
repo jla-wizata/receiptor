@@ -114,8 +114,12 @@ def delete_receipt(supabase: Client, user_id: str, receipt_id: str) -> None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Receipt not found")
 
     storage_path = result.data[0]["storage_path"]
+    # Delete storage first — if this fails the DB row is still intact
+    try:
+        supabase.storage.from_(BUCKET).remove([storage_path])
+    except Exception as e:
+        logger.error("Failed to delete storage file %s: %s", storage_path, e)
     supabase.table("receipts").delete().eq("id", receipt_id).eq("user_id", user_id).execute()
-    supabase.storage.from_(BUCKET).remove([storage_path])
 
 
 def _signed_url(supabase: Client, storage_path: str) -> str:

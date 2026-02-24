@@ -5,6 +5,7 @@ struct ReceiptListView: View {
     @State private var showCapture = false
     @State private var showFilter = false
     @State private var selectedReceipt: Receipt? = nil
+    @State private var receiptToDelete: Receipt? = nil
 
     var body: some View {
         NavigationStack {
@@ -46,6 +47,24 @@ struct ReceiptListView: View {
             }
             .navigationDestination(item: $selectedReceipt) { receipt in
                 ReceiptDetailView(receipt: receipt)
+            }
+            .confirmationDialog(
+                "Delete Receipt",
+                isPresented: Binding(
+                    get: { receiptToDelete != nil },
+                    set: { if !$0 { receiptToDelete = nil } }
+                ),
+                titleVisibility: .visible
+            ) {
+                Button("Delete", role: .destructive) {
+                    if let r = receiptToDelete {
+                        Task { await viewModel.delete(id: r.id) }
+                    }
+                    receiptToDelete = nil
+                }
+                Button("Cancel", role: .cancel) { receiptToDelete = nil }
+            } message: {
+                Text("This receipt and its image will be permanently deleted.")
             }
             .task { await viewModel.load() }
             .refreshable { await viewModel.load() }
@@ -98,10 +117,10 @@ struct ReceiptListView: View {
                             }
                             .buttonStyle(.borderless)
                             Button {
-                                Task { await viewModel.delete(id: receipt.id) }
+                                receiptToDelete = receipt
                             } label: {
                                 Image(systemName: "trash")
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.appDanger)
                             }
                             .buttonStyle(.borderless)
                         }
@@ -229,8 +248,8 @@ struct ReceiptRow: View {
 
     private var ocrStatusColor: Color {
         switch receipt.ocrStatus {
-        case "success": return .green
-        case "manual": return .blue
+        case "success": return .appSuccess
+        case "manual": return .appAccent
         default: return .orange
         }
     }
