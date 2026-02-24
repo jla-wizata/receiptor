@@ -50,12 +50,12 @@ struct ContentRootView: View {
 struct SplashView: View {
     var body: some View {
         ZStack {
-            Color.appPrimary.ignoresSafeArea()
+            Color.appBackground.ignoresSafeArea()
             VStack(spacing: 20) {
-                AppIcon(size: 90, variant: .white)
+                AppIcon(size: 90, variant: .color)
                 Text("Receiptor")
                     .font(.system(size: 34, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(.appPrimary)
             }
         }
     }
