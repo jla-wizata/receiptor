@@ -61,6 +61,9 @@ def _vision_client():
         import json
         from google.oauth2 import service_account
         info = json.loads(settings.google_credentials_json)
+        # Some env var UIs double-escape \n in the private key — normalize it
+        if "private_key" in info and "\\n" in info["private_key"]:
+            info["private_key"] = info["private_key"].replace("\\n", "\n")
         creds = service_account.Credentials.from_service_account_info(
             info, scopes=["https://www.googleapis.com/auth/cloud-platform"]
         )

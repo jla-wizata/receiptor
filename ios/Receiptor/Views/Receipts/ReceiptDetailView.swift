@@ -31,8 +31,8 @@ struct ReceiptDetailView: View {
 
     private var ocrStatusColor: Color {
         switch receipt.ocrStatus {
-        case "success": return .green
-        case "manual": return .blue
+        case "success": return .appSuccess
+        case "manual": return .appAccent
         default: return .orange
         }
     }
@@ -95,6 +95,7 @@ struct ReceiptDetailView: View {
         }
         .navigationTitle("Receipt")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
         .sheet(isPresented: $showDateCorrection) {
             DateCorrectionSheet(receipt: receipt, viewModel: nil) { updated in
                 receipt = updated
