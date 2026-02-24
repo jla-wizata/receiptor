@@ -15,8 +15,9 @@ class Settings(BaseSettings):
     supabase_anon_key: str
     supabase_service_role_key: str = ""
 
-    # Google Cloud Vision
-    google_application_credentials: str = ""
+    # Google Cloud Vision — use file path locally, JSON content in cloud
+    google_application_credentials: str = ""  # path to JSON file (local dev)
+    google_credentials_json: str = ""          # raw JSON content (cloud deployment)
 
     # App
     app_env: str = "development"

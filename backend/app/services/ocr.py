@@ -54,9 +54,23 @@ def extract_date_from_text(text: str) -> Optional[date]:
     return max(valid) if valid else None
 
 
+def _vision_client():
+    """Build Vision client — uses JSON env var in cloud, file path locally."""
+    from app.config import settings
+    if settings.google_credentials_json:
+        import json
+        from google.oauth2 import service_account
+        info = json.loads(settings.google_credentials_json)
+        creds = service_account.Credentials.from_service_account_info(
+            info, scopes=["https://www.googleapis.com/auth/cloud-platform"]
+        )
+        return vision.ImageAnnotatorClient(credentials=creds)
+    return vision.ImageAnnotatorClient()
+
+
 def extract_date_from_image(image_bytes: bytes) -> Optional[date]:
     """Call Google Cloud Vision and extract the receipt date from the returned text."""
-    client = vision.ImageAnnotatorClient()
+    client = _vision_client()
     image = vision.Image(content=image_bytes)
     response = client.text_detection(image=image)
 
