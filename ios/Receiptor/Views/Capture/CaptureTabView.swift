@@ -221,6 +221,7 @@ struct CaptureTabView: View {
                         camera.capturePhoto { image in
                             capturedImage = image
                             zoom = camera.minZoom
+                            camera.stop()
                         }
                     } label: {
                         ZStack {
@@ -263,7 +264,7 @@ struct CaptureTabView: View {
                 }
 
                 HStack(spacing: 16) {
-                    Button { capturedImage = nil; errorMessage = nil } label: {
+                    Button { capturedImage = nil; errorMessage = nil; camera.start() } label: {
                         Label("Retake", systemImage: "arrow.counterclockwise")
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 4)
@@ -298,10 +299,16 @@ struct CaptureTabView: View {
     // MARK: Helpers
 
     private func upload(_ image: UIImage) {
-        guard let jpeg = image.jpegData(compressionQuality: 0.85) else { return }
         isUploading = true
         errorMessage = nil
         Task {
+            let jpeg = await Task.detached(priority: .userInitiated, operation: {
+                image.jpegData(compressionQuality: 0.85)
+            }).value
+            guard let jpeg else {
+                await MainActor.run { isUploading = false }
+                return
+            }
             do {
                 let receipt = try await service.upload(imageData: jpeg)
                 await MainActor.run {

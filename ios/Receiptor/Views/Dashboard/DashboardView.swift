@@ -89,9 +89,9 @@ struct DashboardView: View {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                     StatCard(title: "Working Days", value: "\(summary.totalWorkingDays)")
                     StatCard(title: "Days Passed", value: "\(summary.pastWorkingDays)")
-                    StatCard(title: "With Proof", value: "\(summary.daysWithProof)", color: .green)
+                    StatCard(title: "With Proof", value: "\(summary.daysWithProof)", color: .appSuccess)
                     StatCard(title: "Without Proof", value: "\(summary.daysWithoutProof)",
-                             color: summary.daysWithoutProof > 0 ? .orange : .primary)
+                             color: summary.daysWithoutProof > 0 ? .appAccent : .primary)
                 }
                 .padding(.horizontal)
 
@@ -102,7 +102,7 @@ struct DashboardView: View {
 
                     let progress = Double(summary.daysWithoutProof) / Double(max(summary.homeworkingThreshold, 1))
                     ProgressView(value: min(progress, 1.0))
-                        .tint(progress >= 1.0 ? .red : progress > 0.8 ? .orange : .green)
+                        .tint(progress >= 1.0 ? .appDanger : progress > 0.8 ? .appAccent : .appSuccess)
                         .padding(.horizontal)
 
                     HStack {
@@ -123,7 +123,7 @@ struct DashboardView: View {
                     Text("Estimated \(summary.forecastedDaysWithoutProof) days without proof by Dec 31")
                         .font(.body)
                         .foregroundColor(
-                            summary.forecastedDaysWithoutProof > summary.homeworkingThreshold ? .red : .primary
+                            summary.forecastedDaysWithoutProof > summary.homeworkingThreshold ? .appDanger : .primary
                         )
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -146,7 +146,7 @@ struct DashboardView: View {
             if let error = reportError {
                 Text(error)
                     .font(.caption)
-                    .foregroundColor(.red)
+                    .foregroundColor(.appDanger)
             }
             Button(action: downloadReport) {
                 Group {

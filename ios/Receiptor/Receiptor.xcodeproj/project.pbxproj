@@ -43,6 +43,8 @@
 		AA000022000000000000001B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA000022000000000000001A /* Assets.xcassets */; };
 		AA0000B1000000000000001B /* CaptureTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000B0000000000000001A /* CaptureTabView.swift */; };
 		AA0000C1000000000000001B /* DatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000C0000000000000001A /* DatePickerSheet.swift */; };
+		AA0000D1000000000000001B /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000D0000000000000001A /* AppColors.swift */; };
+		AA0000D3000000000000001B /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000D2000000000000001A /* AppIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +89,8 @@
 		AA000027000000000000001A /* Receiptor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Receiptor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000B0000000000000001A /* CaptureTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureTabView.swift; sourceTree = "<group>"; };
 		AA0000C0000000000000001A /* DatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerSheet.swift; sourceTree = "<group>"; };
+		AA0000D0000000000000001A /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		AA0000D2000000000000001A /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +104,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA000040000000000000001A /* Receiptor */ = {
+		AA000040000000000000001A = {
 			isa = PBXGroup;
 			children = (
 				AA000001000000000000001A /* ReceiptorApp.swift */,
@@ -108,6 +112,7 @@
 				AA000041000000000000001A /* Keychain */,
 				AA000042000000000000001A /* Network */,
 				AA000043000000000000001A /* Models */,
+				AA0000D4000000000000001A /* Theme */,
 				AA000044000000000000001A /* Views */,
 				AA000022000000000000001A /* Assets.xcassets */,
 				AA000023000000000000001A /* Info.plist */,
@@ -239,14 +244,6 @@
 			path = Report;
 			sourceTree = "<group>";
 		};
-		AA000051000000000000001A /* Capture */ = {
-			isa = PBXGroup;
-			children = (
-				AA0000B0000000000000001A /* CaptureTabView.swift */,
-			);
-			path = Capture;
-			sourceTree = "<group>";
-		};
 		AA000050000000000000001A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,10 +255,27 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		AA000051000000000000001A /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000B0000000000000001A /* CaptureTabView.swift */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		AA0000D4000000000000001A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000D0000000000000001A /* AppColors.swift */,
+				AA0000D2000000000000001A /* AppIcon.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		AA000060000000000000001A = {
 			isa = PBXGroup;
 			children = (
-				AA000040000000000000001A /* Receiptor */,
+				AA000040000000000000001A,
 				AA000061000000000000001A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -302,7 +316,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					AA000070000000000000001A = {
 						CreatedOnToolsVersion = 15.0;
@@ -378,6 +392,8 @@
 				AA000020000000000000001B /* LoadingView.swift in Sources */,
 				AA000021000000000000001B /* ComplianceStatusBadge.swift in Sources */,
 				AA0000C1000000000000001B /* DatePickerSheet.swift in Sources */,
+				AA0000D1000000000000001B /* AppColors.swift in Sources */,
+				AA0000D3000000000000001B /* AppIcon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +410,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = QA56T49ZVK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Info.plist;
@@ -421,6 +438,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = QA56T49ZVK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Info.plist;
@@ -443,6 +461,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -475,6 +494,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -494,6 +514,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -503,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -535,6 +557,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -546,6 +569,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -574,7 +598,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
 	};
 	rootObject = AA000090000000000000001A /* Project object */;
 }

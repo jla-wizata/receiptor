@@ -13,12 +13,12 @@ struct ComplianceStatusBadge: View {
                 .font(.headline)
                 .fontWeight(.bold)
         }
-        .foregroundColor(isCompliant ? .green : .red)
+        .foregroundColor(isCompliant ? .appSuccess : .appDanger)
         .padding(.horizontal, 20)
         .padding(.vertical, 10)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(isCompliant ? Color.green.opacity(0.15) : Color.red.opacity(0.15))
+                .fill(isCompliant ? Color.appSuccess.opacity(0.15) : Color.appDanger.opacity(0.15))
         )
     }
 }

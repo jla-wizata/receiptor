@@ -91,7 +91,9 @@ final class APIClient {
             throw APIError.networkError(URLError(.badServerResponse))
         }
         if http.statusCode == 401 {
-            NotificationCenter.default.post(name: .apiUnauthorized, object: nil)
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .apiUnauthorized, object: nil)
+            }
             throw APIError.unauthorized
         }
         guard (200..<300).contains(http.statusCode) else {

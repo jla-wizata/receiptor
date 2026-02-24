@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -10 120 120" width="100" height="100">
+  <!-- Receipt body: white (for use on colored/dark backgrounds) -->
+  <path
+    d="M 12,4 H 58 Q 64,4 64,10
+       V 75
+       L 58.2,84 L 52.4,75
+       L 46.6,84 L 40.8,75
+       L 35.0,84 L 29.2,75
+       L 23.4,84 L 17.6,75
+       L 11.8,84 L 6,75
+       V 10 Q 6,4 12,4 Z"
+    fill="white"
+  />
+
+  <!-- Three text-like lines (semi-transparent) -->
+  <rect x="13" y="26" width="36" height="3" rx="1.5" fill="white" opacity="0.40"/>
+  <rect x="13" y="37" width="36" height="3" rx="1.5" fill="white" opacity="0.40"/>
+  <rect x="13" y="48" width="28" height="3" rx="1.5" fill="white" opacity="0.40"/>
+
+  <!-- White date-marker badge -->
+  <circle cx="60" cy="75" r="16" fill="white" opacity="0.85"/>
+  <!-- Checkmark (dark on white) -->
+  <path
+d="M 52,75 L 58,82 L 68,68"    stroke="rgba(0,0,0,0.30)"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>

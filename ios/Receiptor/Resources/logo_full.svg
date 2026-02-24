@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="200" height="50">
+  <!-- Icon: logo_icon scaled to ~42x42, centred vertically in the 50px height -->
+  <g transform="translate(2,4) scale(0.42)">
+    <path
+      d="M 12,4 H 58 Q 64,4 64,10
+         V 75
+         L 58.2,84 L 52.4,75
+         L 46.6,84 L 40.8,75
+         L 35.0,84 L 29.2,75
+         L 23.4,84 L 17.6,75
+         L 11.8,84 L 6,75
+         V 10 Q 6,4 12,4 Z"
+      fill="#1A535C"
+    />
+    <rect x="13" y="26" width="36" height="3" rx="1.5" fill="white" opacity="0.65"/>
+    <rect x="13" y="37" width="36" height="3" rx="1.5" fill="white" opacity="0.65"/>
+    <rect x="13" y="48" width="28" height="3" rx="1.5" fill="white" opacity="0.65"/>
+    <circle cx="60" cy="75" r="16" fill="#E8A838"/>
+    <path
+      d="M 52,75 L 58,82 L 68,68"
+      stroke="#1A535C"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+  </g>
+
+  <!-- Wordmark "Receiptor" -->
+  <text
+    x="42"
+    y="33"
+    font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'Helvetica Neue', sans-serif"
+    font-size="22"
+    font-weight="700"
+    fill="#1A535C"
+  >Receiptor</text>
+</svg>

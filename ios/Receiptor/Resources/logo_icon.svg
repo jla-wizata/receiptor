@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-17 -15 120 120" width="100" height="100">
+  <!-- Receipt body: slate teal #1A535C -->
+  <!-- Path: top-left corner (6,4) to top-right (64,4), rounded corners r=6,
+       right edge down to (64,75), zigzag bottom (5 teeth, tooth height=9),
+       left edge up to (6,75), rounded top-left corner -->
+  <path
+    d="M 12,4 H 58 Q 64,4 64,10
+       V 75
+       L 58.2,84 L 52.4,75
+       L 46.6,84 L 40.8,75
+       L 35.0,84 L 29.2,75
+       L 23.4,84 L 17.6,75
+       L 11.8,84 L 6,75
+       V 10 Q 6,4 12,4 Z"
+    fill="#1A535C"
+  />
+
+  <!-- Three text-like lines -->
+  <rect x="13" y="26" width="36" height="3" rx="1.5" fill="white" opacity="0.65"/>
+  <rect x="13" y="37" width="36" height="3" rx="1.5" fill="white" opacity="0.65"/>
+  <rect x="13" y="48" width="28" height="3" rx="1.5" fill="white" opacity="0.65"/>
+
+  <!-- Amber date-marker badge -->
+  <circle cx="68" cy="75" r="16" fill="#E8A838"/>
+  <!-- Checkmark -->
+  <path
+    d="M 60,75 L 66,82 L 76,68"
+    stroke="#1A535C"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+</svg>
