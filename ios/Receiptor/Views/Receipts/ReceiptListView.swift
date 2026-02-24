@@ -249,8 +249,9 @@ struct ReceiptRow: View {
     private var ocrStatusColor: Color {
         switch receipt.ocrStatus {
         case "success": return .appSuccess
-        case "manual": return .appAccent
-        default: return .orange
+        case "manual": return .appSuccess
+        case "no_date_found": return .appAccent
+        default: return .red
         }
     }
 
@@ -258,8 +259,8 @@ struct ReceiptRow: View {
         switch receipt.ocrStatus {
         case "success": return "Date auto-detected"
         case "manual": return "Date filled"
-        case "no_date_found": return "No date filled"
-        default: return "Failed"
+        case "no_date_found": return "No date found"
+        default: return "Date detection failed"
         }
     }
 
