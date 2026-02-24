@@ -55,12 +55,22 @@ def extract_date_from_text(text: str) -> Optional[date]:
 
 
 def _vision_client():
-    """Build Vision client — uses JSON env var in cloud, file path locally."""
+    """Build Vision client — accepts JSON content in either GOOGLE_CREDENTIALS_JSON
+    or GOOGLE_APPLICATION_CREDENTIALS (auto-detected when value starts with '{')."""
+    import json
+    import os
+    from google.oauth2 import service_account
     from app.config import settings
-    if settings.google_credentials_json:
-        import json
-        from google.oauth2 import service_account
-        info = json.loads(settings.google_credentials_json)
+
+    # Resolve JSON content from whichever env var the user populated
+    raw = settings.google_credentials_json
+    if not raw:
+        ga = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", "")
+        if ga.strip().startswith("{"):
+            raw = ga
+
+    if raw:
+        info = json.loads(raw)
         # Some env var UIs double-escape \n in the private key — normalize it
         if "private_key" in info and "\\n" in info["private_key"]:
             info["private_key"] = info["private_key"].replace("\\n", "\n")
@@ -68,6 +78,7 @@ def _vision_client():
             info, scopes=["https://www.googleapis.com/auth/cloud-platform"]
         )
         return vision.ImageAnnotatorClient(credentials=creds)
+
     return vision.ImageAnnotatorClient()
 
 
